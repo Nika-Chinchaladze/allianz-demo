@@ -10,5 +10,11 @@
     "outDir": "dist",
     "rootDir": "tests"
   },
-  "include": ["tests/**/*.ts"]
+  "include": [
+    "tests/env/**/*.ts",
+    "tests/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
