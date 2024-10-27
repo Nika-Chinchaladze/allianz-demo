@@ -28,11 +28,11 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json', },
       dependencies: ['setup'],
     },
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'], storageState: 'playwright/.auth/user.json', },
-    //   dependencies: ['setup'],
-    // },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'], storageState: 'playwright/.auth/user.json', },
+      dependencies: ['setup'],
+    },
     // {
     //   name: 'Mobile-Android',
     //   use: { browserName: 'chromium', ...devices['Pixel 7'] },

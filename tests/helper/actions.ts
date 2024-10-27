@@ -49,8 +49,4 @@ export class Actions {
         }, myToken);
         await this.page.reload();
     }
-
-    async savePageContext(filePath: string): Promise<void> {
-        await this.page.context().storageState({ path: filePath });
-    }
 }

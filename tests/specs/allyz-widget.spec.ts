@@ -5,8 +5,11 @@ test.describe('Test allyz-widgets', async () => {
     test('basic test', async ({ page }) => {
         const claimPage = new ClaimPage(page);
         await claimPage.actions.goto(claimPage.baseUrl);
+        await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);
         await claimPage.actions.setValueInField(claimPage.policyNumberInput, 'OCR5DEU0000004');
         await claimPage.actions.clickOnElement(claimPage.continueBtn);
         await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);
+        await claimPage.waiters.waitForSelector(claimPage.title, 5000);
+        await claimPage.assertions.verifyPageUrl(claimPage.baseUrl);
     });
 });
