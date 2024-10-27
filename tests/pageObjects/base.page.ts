@@ -1,9 +1,10 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import { Page } from "@playwright/test";
 import { Actions } from '../helper/actions';
 import { Assertions } from '../helper/assertions';
 import { Waiters } from "../helper/waiters";
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 export class BasePage {
     public actions;
