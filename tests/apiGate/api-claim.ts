@@ -1,5 +1,5 @@
 import ApiBase from "./api-base";
-import { setApiAccessToken } from '../env/test.env';
+import { setApiAccessToken } from '../helper/setAuthToken';
 
 export class ApiClaim extends ApiBase {
     public postAuthTokenUrl(): string {

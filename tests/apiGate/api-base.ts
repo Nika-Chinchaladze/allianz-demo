@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { setApiAccessToken } from '../env/test.env';
 
 export default class ApiBase {
     public apiBaseUrl: string = 'https://qa-allianz-partners.apis.allianz.com';

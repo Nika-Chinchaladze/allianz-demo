@@ -17,7 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "@playwright/test": "^1.48.2",
-    "axios": "^1.7.7"
+    "axios": "^1.7.7",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^22.8.1",

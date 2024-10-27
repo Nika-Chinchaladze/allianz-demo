@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import * as dotenv from 'dotenv';
 
 export default defineConfig({
   testDir: './tests',
@@ -9,8 +10,8 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     httpCredentials: {
-      username: 'altair',
-      password: '123123'
+      username: `${process.env.USERNAME}`,
+      password: `${process.env.PASSWORD}`
     },
   },
   reporter: [

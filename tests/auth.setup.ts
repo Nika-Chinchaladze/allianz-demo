@@ -1,7 +1,7 @@
 import { test as setup } from '@playwright/test';
 import { ClaimPage } from './pageObjects/claim.page';
 import { ApiClaim } from './apiGate/api-claim';
-import { AUTH_TOKEN } from './env/test.env';
+import { AUTH_TOKEN } from './helper/setAuthToken';
 import path from 'path';
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
