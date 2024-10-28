@@ -8,8 +8,8 @@ export default class ApiBase {
         headersData: object,
         bodyData: string | object,
         errorMessage?: boolean
-    ): Promise<void> {
-        let bodyInfo: any = {};
+    ): Promise<Record<string, never>> {
+        let bodyInfo = {};
         const headers = headersData;
         await axios.post(endpoint, bodyData, { headers })
         .then((response) => {

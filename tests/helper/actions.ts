@@ -29,7 +29,7 @@ export class Actions {
 
     async moveToElement(element: string): Promise<void> {
         try {
-            const target = await this.page.locator(element);
+            const target = this.page.locator(element);
             await target.scrollIntoViewIfNeeded();
         } catch (error) {
             console.log(error);

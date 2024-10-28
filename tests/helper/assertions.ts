@@ -20,7 +20,7 @@ export class Assertions {
     }
 
     async verifyElementIsPresent(element: string): Promise<void> {
-        await expect(this.page.locator(element)).toBeTruthy();
+        expect(this.page.locator(element)).toBeTruthy();
     }
 
     async verifyElementIsEnabled(element: string): Promise<void> {

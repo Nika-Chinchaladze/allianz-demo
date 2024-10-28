@@ -24,7 +24,7 @@ export class ApiClaim extends ApiBase {
                 residence: "FR"
             }
         };
-        const bodyInfo: any = await this.postMethod(this.postAuthTokenUrl(), headers, data);
+        const bodyInfo = await this.postMethod(this.postAuthTokenUrl(), headers, data);
         setApiAccessToken(bodyInfo.token);
     }
 }
