@@ -8,12 +8,14 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "outDir": "dist",
-    "rootDir": "tests"
+    "rootDir": "./"
   },
   "include": [
-    "tests/**/*.ts"
+    "tests/**/*.ts",
+    "playwright.config.ts",
+    "eslint.config.mjs",
+    ".prettierrc",
+    ".prettierignore"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

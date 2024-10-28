@@ -4,7 +4,7 @@
   "description": "allianz altair project",
   "main": "index.js",
   "scripts": {
-    "pretest": "tsc --noEmit && eslint tests/**",
+    "pretest": "tsc --noEmit && eslint tests/** && prettier --check .",
     "test": "npx playwright test tests/specs/allyz-widget.spec.ts",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report",
@@ -24,6 +24,7 @@
     "allure-commandline": "^2.31.0",
     "allure-playwright": "^3.0.5",
     "eslint": "^9.13.0",
+    "prettier": "^3.3.3",
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.11.0"
   }
