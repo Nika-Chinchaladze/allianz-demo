@@ -8,7 +8,8 @@
     "test": "npx playwright test tests/specs/allyz-widget.spec.ts",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report",
-    "allure:clean": "rd /s /q allure-results && rd /s /q allure-report"
+    "allure:clean": "rd /s /q allure-results && rd /s /q allure-report",
+    "format:code": "npx prettier --write ."
   },
   "author": "nika chinchaladze",
   "license": "ISC",

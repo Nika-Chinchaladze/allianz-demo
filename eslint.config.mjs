@@ -6,14 +6,14 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   {
     languageOptions: {
-        parserOptions: {
-            project: true,
-            tsconfigRootDir: '.',
-        },
+      parserOptions: {
+        project: true,
+        tsconfigRootDir: '.',
+      },
     },
     rules: {
-        "@typescript-eslint/no-floating-promises": "error",
-        "@typescript-eslint/await-thenable": "error",
+      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/await-thenable': 'error',
     },
-  }
+  },
 );

@@ -1,52 +1,52 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class Actions {
-    public page;
+  public page;
 
-    constructor(page: Page) {
-        this.page = page;
-    }
-    
-    async goto(url: string): Promise<void> {
-        await this.page.goto(url);
-    }
+  constructor(page: Page) {
+    this.page = page;
+  }
 
-    async getTitle(): Promise<string> {
-        return await this.page.title();
-    }
+  async goto(url: string): Promise<void> {
+    await this.page.goto(url);
+  }
 
-    async clickOnElement(element: string): Promise<void> {
-        await this.page.locator(element).click();
-    }
+  async getTitle(): Promise<string> {
+    return await this.page.title();
+  }
 
-    async setValueInField(element: string, text: string) {
-        await this.page.fill(element, text);
-    }
+  async clickOnElement(element: string): Promise<void> {
+    await this.page.locator(element).click();
+  }
 
-    async selectDropDownList(element: string, text: string) {
-        await this.page.selectOption(element, text);
-    }
+  async setValueInField(element: string, text: string) {
+    await this.page.fill(element, text);
+  }
 
-    async moveToElement(element: string): Promise<void> {
-        try {
-            const target = this.page.locator(element);
-            await target.scrollIntoViewIfNeeded();
-        } catch (error) {
-            console.log(error);
-        }
-    }
+  async selectDropDownList(element: string, text: string) {
+    await this.page.selectOption(element, text);
+  }
 
-    async scrollDown(): Promise<void> {
-        await this.page.evaluate(() => {
-            window.scrollTo(0, document.body.scrollHeight);
-        });
+  async moveToElement(element: string): Promise<void> {
+    try {
+      const target = this.page.locator(element);
+      await target.scrollIntoViewIfNeeded();
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    async setToken(myToken: string): Promise<void> {
-        await this.page.evaluate((token) => {
-            const idToken = { token: token };
-            localStorage.setItem('idToken', JSON.stringify(idToken));
-        }, myToken);
-        await this.page.reload();
-    }
+  async scrollDown(): Promise<void> {
+    await this.page.evaluate(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+  }
+
+  async setToken(myToken: string): Promise<void> {
+    await this.page.evaluate(token => {
+      const idToken = { token: token };
+      localStorage.setItem('idToken', JSON.stringify(idToken));
+    }, myToken);
+    await this.page.reload();
+  }
 }

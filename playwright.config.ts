@@ -17,40 +17,54 @@ export default defineConfig({
       password: `${process.env.MY_PASS_WORD}`,
     },
   },
-  reporter: [
-    ['list'],
-    ['allure-playwright']
-  ],
+  reporter: [['list'], ['allure-playwright']],
   workers: 1,
   projects: [
-    { 
+    {
       name: 'setup',
-      testMatch: /.*\.setup\.ts/ 
+      testMatch: /.*\.setup\.ts/,
     },
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], storageState: 'playwright/.auth/user.json', },
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json',
+      },
       dependencies: ['setup'],
     },
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'], storageState: 'playwright/.auth/user.json', },
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: 'playwright/.auth/user.json',
+      },
       dependencies: ['setup'],
     },
     {
       name: 'edge',
-      use: { ...devices['Desktop Edge'], storageState: 'playwright/.auth/user.json', },
+      use: {
+        ...devices['Desktop Edge'],
+        storageState: 'playwright/.auth/user.json',
+      },
       dependencies: ['setup'],
     },
     {
       name: 'Mobile-Android',
-      use: { browserName: 'chromium', ...devices['Pixel 7'], storageState: 'playwright/.auth/user.json', },
+      use: {
+        browserName: 'chromium',
+        ...devices['Pixel 7'],
+        storageState: 'playwright/.auth/user.json',
+      },
       dependencies: ['setup'],
     },
     {
       name: 'Mobile-Iphone',
-      use: { browserName: 'chromium', ...devices['iPhone 14 Pro Max'], storageState: 'playwright/.auth/user.json', },
+      use: {
+        browserName: 'chromium',
+        ...devices['iPhone 14 Pro Max'],
+        storageState: 'playwright/.auth/user.json',
+      },
       dependencies: ['setup'],
-    }
+    },
   ],
 });
