@@ -1,12 +1,13 @@
-import { test } from '@playwright/test';
-import { ClaimPage } from '../pageObjects/claim.page';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+import { test } from '../fixtures/base';
 
 test.describe('Test allyz-widgets', async () => {
-    test('basic test', async ({ page }) => {
-        const claimPage = new ClaimPage(page);
+    test('basic test', async ({ claimPage }) => {
         await claimPage.actions.goto(claimPage.baseUrl);
         await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);
-        await claimPage.actions.setValueInField(claimPage.policyNumberInput, 'OCR5DEU0000004');
+        await claimPage.actions.setValueInField(claimPage.policyNumberInput, `${process.env.POLICY_ID}`);
         await claimPage.actions.clickOnElement(claimPage.continueBtn);
         await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);
         await claimPage.waiters.waitForSelector(claimPage.title, 15000);
