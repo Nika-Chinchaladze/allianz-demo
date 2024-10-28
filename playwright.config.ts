@@ -4,6 +4,7 @@ dotenv.config();
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
+  globalTeardown: require.resolve('./tests/helper/global-teardown'),
   testDir: './tests',
   timeout: 50000,
   retries: 1,
