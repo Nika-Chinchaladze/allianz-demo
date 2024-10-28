@@ -10,7 +10,7 @@ export class BasePage {
   public actions;
   public assertions;
   public waiters;
-  public baseUrl: string = `${process.env.DEV_BASE_URL}`;
+  public baseUrl: string = process.env.DEV_BASE_URL as string;
 
   constructor(page: Page) {
     this.actions = new Actions(page);

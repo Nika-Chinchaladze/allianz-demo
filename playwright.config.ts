@@ -13,8 +13,8 @@ export default defineConfig({
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     httpCredentials: {
-      username: `${process.env.MY_USER_NAME}`,
-      password: `${process.env.MY_PASS_WORD}`,
+      username: process.env.MY_USER_NAME as string,
+      password: process.env.MY_PASS_WORD as string,
     },
   },
   reporter: [['list'], ['allure-playwright']],
@@ -22,6 +22,7 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
+      use: { ...devices['Desktop Chrome'] },
       testMatch: /.*\.setup\.ts/,
     },
     {
