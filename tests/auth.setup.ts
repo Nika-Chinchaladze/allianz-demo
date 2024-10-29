@@ -22,7 +22,7 @@ setup('authenticate', async ({ page }) => {
   await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);
   await claimPage.actions.setValueInField(
     claimPage.policyNumberInput,
-    `${process.env.POLICY_ID}`,
+    process.env.POLICY_ID as string,
   );
   await claimPage.actions.clickOnElement(claimPage.continueBtn);
   await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);

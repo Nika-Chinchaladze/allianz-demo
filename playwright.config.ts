@@ -12,12 +12,14 @@ export default defineConfig({
     headless: false,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
     httpCredentials: {
       username: process.env.MY_USER_NAME as string,
       password: process.env.MY_PASS_WORD as string,
     },
   },
-  reporter: [['list'], ['allure-playwright']],
+  reporter: [['list'], ['allure-playwright'], ['html', { open: 'on-failure' }]],
   workers: 1,
   projects: [
     {
