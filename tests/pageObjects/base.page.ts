@@ -7,7 +7,12 @@ export class BasePage {
   public actions;
   public assertions;
   public waiters;
-  public baseUrl: string = process.env.DEV_BASE_URL as string;
+  public urlMap: { dev: string; uat: string } = {
+    dev: process.env.DEV_BASE_URL as string,
+    uat: process.env.UAT_BASE_URL as string,
+  };
+  public baseUrl: string =
+    this.urlMap[(process.env.ENV as 'dev' | 'uat') || 'dev'];
 
   constructor(page: Page) {
     this.actions = new Actions(page);
