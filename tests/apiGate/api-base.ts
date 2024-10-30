@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default class ApiBase {
-  public apiBaseUrl: string = 'https://qa-allianz-partners.apis.allianz.com';
+  public apiBaseUrl: string = process.env.API_BASE_URL as string;
 
   public async postMethod(
     endpoint: string,

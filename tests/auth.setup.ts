@@ -1,6 +1,3 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-
 import { test as setup } from '@playwright/test';
 import { ClaimPage } from './pageObjects/claim.page';
 import { ApiClaim } from './apiGate/api-claim';
@@ -18,15 +15,7 @@ setup('authenticate', async ({ page }) => {
   const claimPage = new ClaimPage(page);
   await claimPage.actions.goto(claimPage.baseUrl);
   await claimPage.actions.setToken(AUTH_TOKEN);
-
   await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);
-  await claimPage.actions.setValueInField(
-    claimPage.policyNumberInput,
-    process.env.POLICY_ID as string,
-  );
-  await claimPage.actions.clickOnElement(claimPage.continueBtn);
-  await claimPage.waiters.waitForUrl(claimPage.baseUrl, 5000);
-  await claimPage.waiters.waitForSelector(claimPage.title, 15000);
   await claimPage.assertions.verifyPageUrl(claimPage.baseUrl);
 
   // End of authentication step

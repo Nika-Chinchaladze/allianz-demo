@@ -1,6 +1,3 @@
-import * as dotenv from 'dotenv';
-dotenv.config();
-
 import { test } from '../fixtures/base';
 
 test.describe('Test allyz-widgets', async () => {
