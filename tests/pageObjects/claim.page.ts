@@ -2,17 +2,26 @@ import { step } from '../fixtures/base';
 import { BasePage } from './base.page';
 
 export class ClaimPage extends BasePage {
+  // give name to page object
   public policyNumberInput: string = '//input';
   public continueBtn: string = '//span[contains(text(), "Continue")]';
   public title: string = '//h1[contains(text(), "Claim type")]';
 
-  @step('Navigate to /claims page')
+  // @step('asd') // modify this to work with sync functions
+  // policy(): string {
+  //   return 'information';
+  // }
+
+  // the name of method
+  // steps - o when we use step without argument string than it should include method name and pom class name
+  // modify step it to work with sync and async functions
+  @step()
   async navigate(): Promise<void> {
     await this.actions.goto(this.baseUrl);
     await this.waiters.waitForUrl(this.baseUrl, 5000);
   }
 
-  @step('Fill beneficiary data')
+  @step()
   async fillValues(): Promise<void> {
     await this.actions.setValueInField(
       this.policyNumberInput,
@@ -22,7 +31,7 @@ export class ClaimPage extends BasePage {
     await this.waiters.waitForUrl(this.baseUrl, 5000);
   }
 
-  @step('Make sure that user is transfered to personal claims page')
+  @step()
   async checkState(): Promise<void> {
     await this.waiters.waitForSelector(this.title, 15000);
     await this.assertions.verifyPageUrl(this.baseUrl);

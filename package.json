@@ -21,7 +21,6 @@
   "dependencies": {
     "@playwright/test": "^1.48.2",
     "axios": "^1.7.7",
-    "cross-env": "^7.0.3",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
@@ -30,6 +29,7 @@
     "@types/node": "^22.8.1",
     "allure-commandline": "^2.31.0",
     "allure-playwright": "^3.0.5",
+    "cross-env": "^7.0.3",
     "eslint": "^9.13.0",
     "prettier": "^3.3.3",
     "typescript": "^5.6.3",

@@ -23,7 +23,8 @@ jobs:
         UAT_BASE_URL: ${{ secrets.UAT_BASE_URL }}
         API_BASE_URL: ${{ secrets.API_BASE_URL }}
         POLICY_ID: ${{ secrets.POLICY_ID }}
-      run: cross-env ENV=dev npx playwright test tests/specs/allyz-widget.spec.ts
+        ENV: dev
+      run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
