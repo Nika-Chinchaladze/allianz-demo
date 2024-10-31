@@ -1,12 +1,9 @@
 import { test } from '../fixtures/base';
 
-// use tags -> from package.json + regular expressions
-// steps
 test.describe('Test allyz-widgets', async () => {
-  test('basic test', { tag: '@dev' }, async ({ claimPage }) => {
-    test.slow();
-    await claimPage.navigate();
-    await claimPage.fillValues();
-    await claimPage.checkState();
+  test('should transfer user to claim page', { tag: ['@dev', '@uat'] }, async ({ claimPage }) => {
+    await claimPage.navigateToClaimPage();
+    await claimPage.providePolicyId();
+    await claimPage.checkUserIsTransferred();
   });
 });

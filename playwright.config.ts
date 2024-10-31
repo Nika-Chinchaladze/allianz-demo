@@ -20,7 +20,7 @@ export default defineConfig({
     },
   },
   reporter: [['list'], ['allure-playwright'], ['html', { open: 'on-failure' }]],
-  // workers: 1,
+  workers: 1,
   projects: [
     {
       name: 'setup',
@@ -35,7 +35,6 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
-    /*
     {
       name: 'firefox',
       use: {
@@ -70,6 +69,5 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
-    */
   ],
 });

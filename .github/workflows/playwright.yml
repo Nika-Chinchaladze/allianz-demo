@@ -24,15 +24,6 @@ jobs:
         POLICY_ID: ${{ secrets.POLICY_ID }}
         ENV: dev
       run: npx playwright test
-    - name: Run Playwright tests in Uat Environment
-      env:
-        MY_USER_NAME: ${{ secrets.MY_USER_NAME }}
-        MY_PASS_WORD: ${{ secrets.MY_PASS_WORD }}
-        UAT_BASE_URL: ${{ secrets.UAT_BASE_URL }}
-        API_BASE_URL: ${{ secrets.API_BASE_URL }}
-        POLICY_ID: ${{ secrets.POLICY_ID }}
-        ENV: uat
-      run: npx playwright test
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

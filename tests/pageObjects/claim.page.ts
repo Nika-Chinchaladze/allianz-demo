@@ -7,22 +7,21 @@ export class ClaimPage extends BasePage {
   public continueBtn: string = '//span[contains(text(), "Continue")]';
   public title: string = '//h1[contains(text(), "Claim type")]';
 
-  // @step('asd') // modify this to work with sync functions
-  // policy(): string {
-  //   return 'information';
-  // }
+  @step('synchronous method') // sync method
+  justForDemonstration() {
+    return 'I am synchronous function...';
+  }
 
-  // the name of method
-  // steps - o when we use step without argument string than it should include method name and pom class name
-  // modify step it to work with sync and async functions
-  @step()
-  async navigate(): Promise<void> {
+  @step('navigate to claim page - async') // async method
+  async navigateToClaimPage(): Promise<void> {
+    this.justForDemonstration();
     await this.actions.goto(this.baseUrl);
     await this.waiters.waitForUrl(this.baseUrl, 5000);
   }
 
-  @step()
-  async fillValues(): Promise<void> {
+  @step('provide policy id info - async')
+  async providePolicyId(): Promise<void> {
+    this.justForDemonstration();
     await this.actions.setValueInField(
       this.policyNumberInput,
       process.env.POLICY_ID as string,
@@ -31,8 +30,9 @@ export class ClaimPage extends BasePage {
     await this.waiters.waitForUrl(this.baseUrl, 5000);
   }
 
-  @step()
-  async checkState(): Promise<void> {
+  @step('validate that user is transfered to personal claim page - async')
+  async checkUserIsTransferred(): Promise<void> {
+    this.justForDemonstration();
     await this.waiters.waitForSelector(this.title, 15000);
     await this.assertions.verifyPageUrl(this.baseUrl);
   }

@@ -15,19 +15,17 @@ export { expect } from '@playwright/test';
 
 export function step(stepName?: string) {
   return function decorator(
-    target: (...args: unknown[]) => unknown,
+    target: Function,
     context: ClassMethodDecoratorContext
-  ): (...args: unknown[]) => Promise<void> {
-    return async function replacementMethod(this: unknown, ...args: unknown[]): Promise<void> {
-      if (typeof this === 'object' && this !== null && 'constructor' in this) {
-        const name: string = stepName || `${(this as { constructor: { name: string } }).constructor.name}.${String(context.name)}`;
-
-        await test.step(name, async () => {
-          await target.apply(this, args);
-        });
-      } else {
-        throw new Error("Invalid context for 'this'");
-      }
-    };
-  };
+  ) {
+    return function replacementMethod(this: any, ...args: any): Promise<any> | any {
+      const methodName = context.name as string;
+      const className = this.name as string;
+      const finalName: string = stepName ? `${stepName}, { ${className} }` : `${methodName}, { ${className} }`;
+      return test.step(finalName, async () => {
+        const result = target.call(this, ...args);
+        return Promise.resolve(result); // works with both sync & async
+      });
+    }
+  }
 }
