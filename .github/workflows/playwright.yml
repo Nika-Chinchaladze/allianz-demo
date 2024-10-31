@@ -16,7 +16,14 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      env:
+        MY_USER_NAME: ${{ secrets.MY_USER_NAME }}
+        MY_PASS_WORD: ${{ secrets.MY_PASS_WORD }}
+        DEV_BASE_URL: ${{ secrets.DEV_BASE_URL }}
+        UAT_BASE_URL: ${{ secrets.UAT_BASE_URL }}
+        API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        POLICY_ID: ${{ secrets.POLICY_ID }}
+      run: cross-env ENV=dev npx playwright test tests/specs/allyz-widget.spec.ts
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
