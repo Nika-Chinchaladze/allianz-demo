@@ -16,16 +16,21 @@ export { expect } from '@playwright/test';
 export function step(stepName?: string) {
   return function decorator(
     target: Function,
-    context: ClassMethodDecoratorContext
+    context: ClassMethodDecoratorContext,
   ) {
-    return function replacementMethod(this: any, ...args: any): Promise<any> | any {
+    return function replacementMethod(
+      this: any,
+      ...args: any
+    ): Promise<any> | any {
       const methodName = context.name as string;
       const className = this.name as string;
-      const finalName: string = stepName ? `${stepName}, { ${className} }` : `${methodName}, { ${className} }`;
+      const finalName: string = stepName
+        ? `${stepName}, { ${className} }`
+        : `${methodName}, { ${className} }`;
       return test.step(finalName, async () => {
         const result = target.call(this, ...args);
         return Promise.resolve(result); // works with both sync & async
       });
-    }
-  }
+    };
+  };
 }
