@@ -2,11 +2,11 @@ pipeline {
     agent any
     environment {
         CI = 'true'
-        MY_USER_NAME = credentials('MY_USER_NAME')
-        MY_PASS_WORD = credentials('MY_PASS_WORD')
-        DEV_BASE_URL = credentials('DEV_BASE_URL')
-        API_BASE_URL = credentials('API_BASE_URL')
-        POLICY_ID = credentials('POLICY_ID')
+        MY_USER_NAME = 'altair'
+        MY_PASS_WORD = '123123'
+        DEV_BASE_URL = 'https://altair-dev.allianz-partners.com/claims'
+        API_BASE_URL = 'https://qa-allianz-partners.apis.allianz.com'
+        POLICY_ID = 'QNL4084D1GQ39'
         ENV = 'dev'
     }
     stages {
