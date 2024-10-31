@@ -4,6 +4,7 @@ import { Assertions } from '../helper/assertions';
 import { Waiters } from '../helper/waiters';
 
 export class BasePage {
+  public name: string = 'Base Page';
   public actions;
   public assertions;
   public waiters;

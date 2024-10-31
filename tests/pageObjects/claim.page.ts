@@ -2,7 +2,7 @@ import { step } from '../fixtures/base';
 import { BasePage } from './base.page';
 
 export class ClaimPage extends BasePage {
-  // give name to page object
+  public name: string = 'Claim Page';
   public policyNumberInput: string = '//input';
   public continueBtn: string = '//span[contains(text(), "Continue")]';
   public title: string = '//h1[contains(text(), "Claim type")]';
