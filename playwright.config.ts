@@ -20,7 +20,7 @@ export default defineConfig({
     },
   },
   reporter: [['list'], ['allure-playwright'], ['html', { open: 'on-failure' }]],
-  workers: 1,
+  // workers: 1,
   projects: [
     {
       name: 'setup',
