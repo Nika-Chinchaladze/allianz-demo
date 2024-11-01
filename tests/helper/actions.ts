@@ -47,6 +47,7 @@ export class Actions {
       expect(input).toBeTruthy();
       await expect(input).toBeVisible();
       await expect(input).toBeEnabled();
+      await input.click();
       await expect(input).toBeFocused();
       await input.fill('');
       await input.fill(text);
