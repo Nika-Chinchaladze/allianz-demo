@@ -27,15 +27,14 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
       testMatch: /.*\.setup\.ts/,
     },
-    {
-      name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: 'playwright/.auth/user.json',
-      },
-      dependencies: ['setup'],
-    },
-    /*
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     ...devices['Desktop Chrome'],
+    //     storageState: 'playwright/.auth/user.json',
+    //   },
+    //   dependencies: ['setup'],
+    // },
     {
       name: 'firefox',
       use: {
@@ -44,6 +43,7 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
+    /*
     {
       name: 'edge',
       use: {
