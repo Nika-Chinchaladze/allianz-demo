@@ -1,4 +1,4 @@
-import { step } from '../fixtures/base';
+import { hydrated, step } from '../fixtures/base';
 import { BasePage } from './base.page';
 
 export class ClaimPage extends BasePage {
@@ -6,34 +6,35 @@ export class ClaimPage extends BasePage {
   public policyNumberInput: string = '//input';
   public continueBtn: string = '//span[contains(text(), "Continue")]';
   public title: string = '//h1[contains(text(), "Claim type")]';
+  public verification: string = '//div[contains(@class, "policy-number-form")]//span[text()="Verification"]';
 
-  @step('synchronous method') // sync method
+  @step('synchronous method')
   justForDemonstration() {
     return 'I am synchronous function...';
   }
 
-  @step('navigate to claim page - async') // async method
+  @step('navigate to claim page - async')
+  @hydrated()
   async navigateToClaimPage(): Promise<void> {
     this.justForDemonstration();
     await this.actions.goto(this.baseUrl);
-    await this.waiters.waitForUrl(this.baseUrl, 5000);
+    await this.assertions.verifyPageUrl(this.baseUrl);
   }
 
   @step('provide policy id info - async')
+  @hydrated()
   async providePolicyId(): Promise<void> {
-    this.justForDemonstration();
     await this.actions.setValueInField(
       this.policyNumberInput,
       process.env.POLICY_ID as string,
     );
     await this.actions.clickOnElement(this.continueBtn);
-    await this.waiters.waitForUrl(this.baseUrl, 5000);
+    await this.assertions.verifyPageUrl(this.baseUrl);
   }
 
   @step('validate that user is transfered to personal claim page - async')
+  @hydrated()
   async checkUserIsTransferred(): Promise<void> {
-    this.justForDemonstration();
-    await this.waiters.waitForSelector(this.title, 15000);
     await this.assertions.verifyPageUrl(this.baseUrl);
   }
 }

@@ -7,7 +7,7 @@ export default defineConfig({
   globalTeardown: require.resolve('./tests/helper/global-teardown'),
   testDir: './tests',
   timeout: 50000,
-  retries: 1,
+  retries: 2,
   use: {
     headless: true,
     viewport: { width: 1280, height: 720 },
@@ -27,14 +27,14 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
       testMatch: /.*\.setup\.ts/,
     },
-    // {
-    //   name: 'chromium',
-    //   use: {
-    //     ...devices['Desktop Chrome'],
-    //     storageState: 'playwright/.auth/user.json',
-    //   },
-    //   dependencies: ['setup'],
-    // },
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: 'playwright/.auth/user.json',
+      },
+      dependencies: ['setup'],
+    },
     {
       name: 'firefox',
       use: {
@@ -43,7 +43,6 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
-    /*
     {
       name: 'edge',
       use: {
@@ -70,6 +69,5 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
-    */
   ],
 });

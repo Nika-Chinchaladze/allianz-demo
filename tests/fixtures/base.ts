@@ -1,4 +1,4 @@
-import { test as base } from '@playwright/test';
+import { test as base, expect } from '@playwright/test';
 import { ClaimPage } from '../pageObjects/claim.page';
 
 type MyFixtures = {
@@ -29,10 +29,18 @@ export function step(stepName?: string) {
         : `${methodName}, { ${className} }`;
       return test.step(finalName, async () => {
         const result = target.call(this, ...args);
-        return Promise.resolve(result); // works with both sync & async
+        return Promise.resolve(result);
       });
     };
   };
 }
 
-
+export function hydrated() {
+  return function decorator(target: Function) {
+    return function replacementMethod(this: any, ...args: any) {
+      return expect(async () => {
+        await target.call(this, ...args);
+      }).toPass();
+    }
+  }
+}
