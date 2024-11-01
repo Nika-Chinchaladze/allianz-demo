@@ -9,7 +9,7 @@ export default defineConfig({
   timeout: 50000,
   retries: 1,
   use: {
-    headless: true,
+    headless: false,
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     trace: 'retain-on-failure',
@@ -35,6 +35,7 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
+    /*
     {
       name: 'firefox',
       use: {
@@ -69,5 +70,6 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
+    */
   ],
 });

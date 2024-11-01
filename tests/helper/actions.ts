@@ -8,7 +8,7 @@ export class Actions {
   }
 
   async goto(url: string): Promise<void> {
-    await this.page.goto(url);
+    await this.page.goto(url, { waitUntil: 'domcontentloaded' });
   }
 
   async getTitle(): Promise<string> {
