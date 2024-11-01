@@ -11,10 +11,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+
       - name: Install dependencies
         run: npm ci
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
       - name: Run Playwright tests in Dev Environment
         env:
           MY_USER_NAME: ${{ secrets.MY_USER_NAME }}
@@ -24,6 +27,7 @@ jobs:
           POLICY_ID: ${{ secrets.POLICY_ID }}
           ENV: dev
         run: npx playwright test
+       
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

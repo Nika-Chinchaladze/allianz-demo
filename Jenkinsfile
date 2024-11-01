@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Run E2E Tests') {
             steps {
-                bat 'npx playwright test'
+                bat 'npx playwright test --reporter=html'
             }
             post {
                 always {
