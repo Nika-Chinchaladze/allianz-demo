@@ -1,5 +1,10 @@
 import ApiBase from './api-base';
 import { setApiAccessToken } from '../helper/setAuthToken';
+import {
+  type IHeaderType,
+  type ICredentials,
+  type ILoginData,
+} from '../data/data-types';
 
 export class ApiClaim extends ApiBase {
   public postAuthTokenUrl(): string {
@@ -7,13 +12,16 @@ export class ApiClaim extends ApiBase {
   }
 
   public async postAuthToken(): Promise<void> {
-    const username: string = 'tRWdoPQux4Plgk49OPjV6TWjrX1rlRoC';
-    const password: string = 'zygr7Ajz8oC7tMnI';
-    const headers = {
-      Authorization: 'Basic ' + btoa(`${username}:${password}`),
+    const credentials: ICredentials = {
+      username: 'tRWdoPQux4Plgk49OPjV6TWjrX1rlRoC',
+      password: 'zygr7Ajz8oC7tMnI',
+    };
+    const headers: IHeaderType = {
+      Authorization:
+        'Basic ' + btoa(`${credentials.username}:${credentials.password}`),
       'Content-Type': 'application/json',
     };
-    const data = {
+    const data: ILoginData = {
       scope: 'openid user',
       claims: {
         sub: 'b816dd51-1c97-4ba6-9166-544837ce8b0a',

@@ -10,9 +10,12 @@ export class ClaimPage extends BasePage {
   public continueBtn: Locator = this.locators.getElementByXpath(
     '//span[contains(text(), "Continue")]',
   );
-  public title: string = '//h1[contains(text(), "Claim type")]';
-  public verification: string =
-    '//div[contains(@class, "policy-number-form")]//span[text()="Verification"]';
+  public title: Locator = this.locators.getElementByXpath(
+    '//h1[contains(text(), "Claim type")]',
+  );
+  public verification: Locator = this.locators.getElementByXpath(
+    '//div[contains(@class, "policy-number-form")]//span[text()="Verification"]',
+  );
 
   @step('synchronous method')
   justForDemonstration() {
