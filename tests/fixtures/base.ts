@@ -41,6 +41,6 @@ export function hydrated() {
       return expect(async () => {
         await target.call(this, ...args);
       }).toPass();
-    }
-  }
+    };
+  };
 }

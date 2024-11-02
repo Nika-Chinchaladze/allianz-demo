@@ -27,7 +27,7 @@ jobs:
           POLICY_ID: ${{ secrets.POLICY_ID }}
           ENV: dev
         run: npx playwright test
-       
+
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

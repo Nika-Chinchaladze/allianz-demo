@@ -19,7 +19,11 @@ export default defineConfig({
       password: process.env.MY_PASS_WORD as string,
     },
   },
-  reporter: [['list'], ['allure-playwright'], ['html', { outputFolder: 'test-results' }]],
+  reporter: [
+    ['list'],
+    ['allure-playwright'],
+    ['html', { outputFolder: 'test-results' }],
+  ],
   workers: 1,
   projects: [
     {

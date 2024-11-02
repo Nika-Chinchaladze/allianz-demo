@@ -1,12 +1,18 @@
+import { Locator } from '@playwright/test';
 import { hydrated, step } from '../fixtures/base';
 import { BasePage } from './base.page';
 
 export class ClaimPage extends BasePage {
   public name: string = 'Claim Page';
-  public policyNumberInput: string = '//input';
-  public continueBtn: string = '//span[contains(text(), "Continue")]';
+
+  public policyNumberInput: Locator =
+    this.locators.getElementByXpath('//input');
+  public continueBtn: Locator = this.locators.getElementByXpath(
+    '//span[contains(text(), "Continue")]',
+  );
   public title: string = '//h1[contains(text(), "Claim type")]';
-  public verification: string = '//div[contains(@class, "policy-number-form")]//span[text()="Verification"]';
+  public verification: string =
+    '//div[contains(@class, "policy-number-form")]//span[text()="Verification"]';
 
   @step('synchronous method')
   justForDemonstration() {

@@ -1,4 +1,4 @@
-import { expect, Page } from '@playwright/test';
+import { expect, Page, Locator } from '@playwright/test';
 
 export class Actions {
   public page;
@@ -20,68 +20,70 @@ export class Actions {
     return await this.page.title();
   }
 
-  async clickOnElement(element: string) {
-    const btn = this.page.locator(element);
+  async clickOnElement(element: Locator) {
     try {
-      const count = await btn.count();
+      const count = await element.count();
       if (count === 0) {
-          throw new Error(`Element "${element}" does not exist.`);
+        throw new Error(`Element "${element}" does not exist.`);
       }
-      await expect(btn).toBeVisible();
-      await expect(btn).toBeEnabled();
-      await btn.waitFor({ state: 'attached' });
-      await btn.click();
+      await expect(element).toBeVisible();
+      await expect(element).toBeEnabled();
+      await element.waitFor({ state: 'attached' });
+      await element.click();
     } catch (error) {
       console.error(`Error clicking on element "${element}:"`, error);
       throw error;
     }
   }
 
-  async setValueInField(element: string, text: string) {
-    const input = this.page.locator(element);
+  async setValueInField(element: Locator, text: string) {
     try {
-      const count = await input.count();
+      const count = await element.count();
       if (count === 0) {
-          throw new Error(`Input element "${element}" does not exist.`);
+        throw new Error(`Input element "${element}" does not exist.`);
       }
-      expect(input).toBeTruthy();
-      await expect(input).toBeVisible();
-      await expect(input).toBeEnabled();
-      await input.click();
-      await expect(input).toBeFocused();
-      await input.fill('');
-      await input.fill(text);
+      expect(element).toBeTruthy();
+      await expect(element).toBeVisible();
+      await expect(element).toBeEnabled();
+      await element.click();
+      await expect(element).toBeFocused();
+      await element.fill('');
+      await element.fill(text);
     } catch (error) {
-      console.error(`Error setting value in input element "${element}:"`, error);
+      console.error(
+        `Error setting value in input element "${element}:"`,
+        error,
+      );
       throw error;
     }
   }
 
-  async selectDropDownList(element: string, text: string) {
-    const dropdown = this.page.locator(element);
+  async selectDropDownList(element: Locator, text: string) {
     try {
-      const count = await dropdown.count();
+      const count = await element.count();
       if (count === 0) {
-          throw new Error(`Element "${element}" does not exist.`);
+        throw new Error(`Element "${element}" does not exist.`);
       }
-      await expect(dropdown).toBeVisible();
-      await expect(dropdown).toBeEnabled();
-      await dropdown.selectOption({ label: text });
+      await expect(element).toBeVisible();
+      await expect(element).toBeEnabled();
+      await element.selectOption({ label: text });
     } catch (error) {
-      console.error(`Error selecting option "${text}" from dropdown "${element}":`, error);
+      console.error(
+        `Error selecting option "${text}" from dropdown "${element}":`,
+        error,
+      );
       throw error;
     }
   }
 
-  async moveToElement(element: string): Promise<void> {
-    const target = this.page.locator(element);
+  async moveToElement(element: Locator): Promise<void> {
     try {
-      const count = await target.count();
+      const count = await element.count();
       if (count === 0) {
-          throw new Error(`Element "${element}" does not exist.`);
+        throw new Error(`Element "${element}" does not exist.`);
       }
-      await expect(target).toBeVisible();
-      await target.scrollIntoViewIfNeeded();
+      await expect(element).toBeVisible();
+      await element.scrollIntoViewIfNeeded();
     } catch (error) {
       console.log(error);
     }
