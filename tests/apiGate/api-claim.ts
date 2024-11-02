@@ -1,10 +1,11 @@
 import ApiBase from './api-base';
 import { setApiAccessToken } from '../helper/setAuthToken';
-import {
-  type IHeaderType,
-  type ICredentials,
-  type ILoginData,
-} from '../data/data-types';
+import { type IHeaderType } from '../data/data-types';
+import { DataProvider } from '../data/data-provider';
+import { type IUser } from '../data/data-types';
+
+const dataProvider = new DataProvider();
+const users: IUser = dataProvider.getApiUserData();
 
 export class ApiClaim extends ApiBase {
   public postAuthTokenUrl(): string {
@@ -12,30 +13,18 @@ export class ApiClaim extends ApiBase {
   }
 
   public async postAuthToken(): Promise<void> {
-    const credentials: ICredentials = {
-      username: 'tRWdoPQux4Plgk49OPjV6TWjrX1rlRoC',
-      password: 'zygr7Ajz8oC7tMnI',
-    };
     const headers: IHeaderType = {
       Authorization:
-        'Basic ' + btoa(`${credentials.username}:${credentials.password}`),
+        'Basic ' +
+        btoa(
+          `${users.userCredentials.username}:${users.userCredentials.password}`,
+        ),
       'Content-Type': 'application/json',
-    };
-    const data: ILoginData = {
-      scope: 'openid user',
-      claims: {
-        sub: 'b816dd51-1c97-4ba6-9166-544837ce8b0a',
-        aud: 'widget',
-        email: 'altairtest581@gmail.com',
-        given_name: 'Hellow',
-        family_name: 'World',
-        residence: 'FR',
-      },
     };
     const bodyInfo = await this.postMethod(
       this.postAuthTokenUrl(),
       headers,
-      data,
+      users.userLoginData,
     );
     setApiAccessToken(bodyInfo.token);
   }

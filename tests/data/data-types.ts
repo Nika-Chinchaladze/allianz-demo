@@ -19,3 +19,8 @@ export interface ILoginData {
     residence: string;
   };
 }
+
+export interface IUser {
+  userCredentials: ICredentials;
+  userLoginData: ILoginData;
+}
