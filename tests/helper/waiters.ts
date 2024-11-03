@@ -1,4 +1,5 @@
-import { Page } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
+import { TIME_OUT } from './setAuthToken';
 
 export class Waiters {
   public page;
@@ -7,15 +8,22 @@ export class Waiters {
     this.page = page;
   }
 
-  async waitForSelector(element: string, amount: number): Promise<void> {
-    await this.page.waitForSelector(element, { timeout: amount });
+  async waitForSelector(
+    element: Locator,
+    amount: number = TIME_OUT,
+    state: 'attached' | 'detached' | 'visible' | 'hidden' = 'visible',
+  ): Promise<void> {
+    await element.waitFor({ timeout: amount, state });
   }
 
-  async waitForTimeOut(amount: number): Promise<void> {
+  async waitForTimeOut(amount: number = TIME_OUT): Promise<void> {
+    if (amount < 0) {
+      throw new Error('Timeout duration must be a non-negative number.');
+    }
     await this.page.waitForTimeout(amount);
   }
 
-  async waitForUrl(url: string, amount: number): Promise<void> {
+  async waitForUrl(url: string, amount: number = TIME_OUT): Promise<void> {
     await this.page.waitForURL(url, { timeout: amount });
   }
 }

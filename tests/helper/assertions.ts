@@ -1,4 +1,5 @@
-import { Page, expect } from '@playwright/test';
+import { Page, expect, Locator } from '@playwright/test';
+import { TIME_OUT } from './setAuthToken';
 
 export class Assertions {
   public page;
@@ -7,38 +8,55 @@ export class Assertions {
     this.page = page;
   }
 
-  async verifyElementHaveText(element: string, text: string): Promise<void> {
-    await expect(this.page.locator(element)).toHaveText(text);
+  async verifyElementHaveText(
+    element: Locator,
+    text: string,
+    timeout: number = TIME_OUT,
+  ): Promise<void> {
+    await expect(element).toHaveText(text, { timeout });
   }
 
   async verifyElementHaveAttribute(
-    element: string,
+    element: Locator,
     attrName: string,
     attrValue: string,
+    timeout: number = TIME_OUT,
   ): Promise<void> {
-    await expect(this.page.locator(element)).toHaveAttribute(
-      attrName,
-      attrValue,
-    );
+    await expect(element).toHaveAttribute(attrName, attrValue, { timeout });
   }
 
-  async verifyElementIsVisible(element: string): Promise<void> {
-    await expect(this.page.locator(element)).toBeVisible();
+  async verifyElementIsVisible(
+    element: Locator,
+    timeout: number = TIME_OUT,
+  ): Promise<void> {
+    await expect(element).toBeVisible({ timeout });
   }
 
-  async verifyElementIsPresent(element: string): Promise<void> {
-    expect(this.page.locator(element)).toBeTruthy();
+  async verifyElementIsPresent(
+    element: Locator,
+    count: number = 1,
+  ): Promise<void> {
+    await expect(element).toHaveCount(count);
   }
 
-  async verifyElementIsEnabled(element: string): Promise<void> {
-    await expect(this.page.locator(element)).toBeEnabled();
+  async verifyElementIsEnabled(
+    element: Locator,
+    timeout: number = TIME_OUT,
+  ): Promise<void> {
+    await expect(element).toBeEnabled({ timeout });
   }
 
-  async verifyPageUrl(pageUrl: string): Promise<void> {
-    await expect(this.page).toHaveURL(pageUrl);
+  async verifyPageUrl(
+    pageUrl: string,
+    timeout: number = TIME_OUT,
+  ): Promise<void> {
+    await expect(this.page).toHaveURL(pageUrl, { timeout });
   }
 
-  async verifyPageTitle(titleName: string): Promise<void> {
-    await expect(this.page).toHaveTitle(titleName);
+  async verifyPageTitle(
+    titleName: string,
+    timeout: number = TIME_OUT,
+  ): Promise<void> {
+    await expect(this.page).toHaveTitle(titleName, { timeout });
   }
 }
