@@ -45,5 +45,7 @@ export class ClaimPage extends BasePage {
   @hydrated()
   async checkUserIsTransferred(): Promise<void> {
     await this.assertions.verifyPageUrl(this.baseUrl);
+    const final = this.title.or(this.verification);
+    await this.assertions.verifyElementIsVisible(final);
   }
 }

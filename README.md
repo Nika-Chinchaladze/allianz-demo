@@ -6,3 +6,4 @@ completed tasks:
 4. Interfaces for test data
 5. Locators class
 6. Test data from json file
+7. Non-deterministic application flow - "or"
