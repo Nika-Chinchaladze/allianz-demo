@@ -1,5 +1,9 @@
 import { test } from '../fixtures/base';
 
+// test.describe.configure({
+//   mode: 'parallel',
+// });
+
 test.describe('Test allyz-widgets', async () => {
   test(
     'should transfer user to claim page',

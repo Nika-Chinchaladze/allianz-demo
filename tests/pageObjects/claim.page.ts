@@ -5,17 +5,10 @@ import { BasePage } from './base.page';
 export class ClaimPage extends BasePage {
   public name: string = 'Claim Page';
 
-  public policyNumberInput: Locator =
-    this.locators.getElementByXpath('//input');
-  public continueBtn: Locator = this.locators.getElementByXpath(
-    '//span[contains(text(), "Continue")]',
-  );
-  public title: Locator = this.locators.getElementByXpath(
-    '//h1[contains(text(), "Claim type")]',
-  );
-  public verification: Locator = this.locators.getElementByXpath(
-    '//div[contains(@class, "policy-number-form")]//span[text()="Verification"]',
-  );
+  public policyNumberInput: Locator = this.page.locator('xpath=//input');
+  public continueBtn: Locator = this.page.locator('xpath=//span[contains(text(), "Continue")]',);
+  public title: Locator = this.page.locator('xpath=//h1[contains(text(), "Claim type")]',);
+  public verification: Locator = this.page.locator('xpath=//div[contains(@class, "policy-number-form")]//span[text()="Verification"]',);
 
   @step('synchronous method')
   justForDemonstration() {
