@@ -7,3 +7,4 @@ completed tasks:
 5. Locators class
 6. Test data from json file
 7. Non-deterministic application flow - "or"
+8. update
